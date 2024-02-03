@@ -20,7 +20,7 @@ router.get("/", checkDuplicateUsernameOrEmail);
 */
 
 router.get("/", async (req, res) => { 
-  let collection = await db.collection("user");
+  let collection = await db.collection("users");
   const query = {username : req.body.username};
   let result = await collection.findOne(query);
   if(result){
