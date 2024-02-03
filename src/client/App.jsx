@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 //import capsules from "./capsules";
-import {HelloWorld, StartCookie, GetCookie, Login} from "./capsules.js";
+import {HelloWorld, StartCookie, GetCookie, Signin, Signup} from "./capsules.js";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -34,8 +34,12 @@ function App() {
           GetCookie
         </button>
 
-        <button onClick={(event) => Login("render", "secure")}>
+        <button onClick={(event) => Signin("render", "secure")}>
           TryLogin
+        </button>
+
+        <button onClick={(event) => Signup("render", "secure")}>
+          TrySignup
         </button>
 
         <p>

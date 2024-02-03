@@ -25,23 +25,42 @@ export function StartCookie(){
 
 export function GetCookie(){
     const cookies = new Cookies(null, { path: '/' });
-    console.log(cookies.get('login'));
+    console.log(cookies.get('userToken'));
 }
 
 
-export function Login(username, password){
+export function Signin(username, password){
     axios.post(URL + "users/signin", {
         username,
         password
     })    
     .then(response => {
         const cookies = new Cookies(null, { path: '/' });
-        cookies.set('login', response.data.accessToken);
+        cookies.set('userToken', response.data.accessToken);
+    })
+}
+
+export function Signup(username, password){
+    axios.post(URL + "users/signup", {
+        username,
+        password
+    }) 
+    .catch(err => {
+        console.log("if this is 400 then username is already in use")
+        console.log(err);
+    })       
+    .then(response => {
+        console.log(response);
     })
 }
 
 export function HelloWorld(){
-    axios.get(URL + "hello");
+    axios.get(URL + "hello")
+    .then(response => console.log(response.data));
+}
+
+export function HelloWorldBasic(){
+    console.log("Hello World, Basic Edition");
 }
 
 //export default capsules
