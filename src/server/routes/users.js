@@ -8,9 +8,15 @@ const router = express.Router();
 
 router.post("/signup", async (req, res) => {
     let collection = db.collection("users");
+    const query = {username : req.body.username};
+    let result = await collection.findOne(query);
+    if(result){
+      console.log(result);
+      res.status(400).send({message: "username already in use"});
+      return;
+    }
     const user = {
         username: req.body.username,
-        email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 8)
     };
     let response = await collection.insertOne(user);
@@ -19,6 +25,32 @@ router.post("/signup", async (req, res) => {
 
 export default router;
 
+
+router.post("/signin", async (req, res) =>{
+    let collection = db.collection("users");
+    let result = await collection.findOne({username : req.body.username});
+    if(!result){
+        console.log("test");
+        res.status(401).send("invalid user or password");
+        return;
+    }
+
+    var passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        result.password
+      );
+
+      if (!passwordIsValid) {
+        return res.status(401).send({
+          accessToken: null,
+          message: "Invalid Password!"
+        });
+      }
+      else{
+        return res.status(200).send("nice password");
+      }
+
+});
     /*
     exports.signin = (req, res) => {
     User.findOne({
