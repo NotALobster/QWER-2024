@@ -3,6 +3,9 @@ import bcrypt from 'bcryptjs/dist/bcrypt.js';
 import express from 'express';
 import db from "../db.js";
 import dotenv from "dotenv";
+
+import authJwt from '../middleware/authjwt.js';
+
 dotenv.config();
 
 const SECRET = process.env.AUTH_SECRET;
@@ -26,7 +29,6 @@ router.post("/signup", async (req, res) => {
     res.send(response).status(200);
 });
 
-export default router;
 
 
 router.post("/signin", async (req, res) =>{
@@ -66,6 +68,11 @@ router.post("/signin", async (req, res) =>{
     });
 
 });
+
+
+
+
+export default router;
     /*
     exports.signin = (req, res) => {
     User.findOne({

@@ -41,6 +41,14 @@ app.get("/hello", (req, res) => {
   res.send(testMessage);*/
 });
 
+app.use(function(req, res, next) {
+  res.header(
+    "Access-Control-Allow-Headers",
+    "x-access-token, Origin, Content-Type, Accept"
+  );
+  next();
+});
+
 ViteExpress.listen(app, 3000, () =>
   console.log("Server is listening on port 3000..."),
 );
