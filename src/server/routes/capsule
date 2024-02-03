@@ -21,11 +21,13 @@ router.get("/sec", authJwt.verifyToken, async (req, res) =>{
 });
 
 
-router.get("/user", async (req, res) => {
+router.get("/user",  authJwt.verifyToken, async (req, res) => {
     let collection = await db.collection("capsules");
-    let query = {user_id : Number(req.query.user_id)}
+    //let query = {user_id : Number(req.query.user_id)}
     //console.log(req.params.user_id);
-    console.log(query);
+    //let query = {_id : new ObjectId(req.id)}
+    //console.log(req.id);
+    let query = {user_id : req.id}
     let results = await collection.find(query)
     .toArray();
     if(!results) res.send(null).status(404);
@@ -41,7 +43,7 @@ const userSchema = {
 }
 */
 
-router.post("/user", async(req, res) =>{
+router.post("/user", authJwt.verifyToken, async(req, res) =>{
     let collection = await db.collection("capsules");
     /*
     let newDoc = req.body;
@@ -51,7 +53,7 @@ router.post("/user", async(req, res) =>{
     let newDoc = {
       message : req.body.message,
       date_added : new Date(),
-      user_id : req.body.user_id,
+      user_id : req.id,
     }
     let result = await collection.insertOne(newDoc);
     res.send(result).status(204);
