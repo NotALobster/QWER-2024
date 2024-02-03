@@ -5,7 +5,7 @@ dotenv.config();
 const SECRET = process.env.AUTH_SECRET;
 
 let verifyToken = (req, res, next) => {
-  let token = req.headers["x-access-token"];
+  let token = req.headers["authorization"];
 
   if (!token) {
     return res.status(403).send({ message: "No token provided" });
