@@ -16,7 +16,14 @@ var corsOptions = {
   origin: "http://localhost:3000"
 };
 
+
+
+
 app.use(cors(corsOptions));
+
+
+
+//ViteExpress.config({ mode: "production" })
 
 
 // parse application/x-www-form-urlencoded
