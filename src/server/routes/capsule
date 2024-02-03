@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 
 
 router.get("/sec", authJwt.verifyToken, async (req, res) =>{
-  console.log(req.id);
+  //console.log(req);
   res.status(200).send("hello world");
 });
 

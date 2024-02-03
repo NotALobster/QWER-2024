@@ -53,7 +53,7 @@ router.post("/signin", async (req, res) =>{
         });
       }
       console.log(user.id);
-      const token = jwt.sign({id: user.id },
+      const token = jwt.sign({id: user._id },
         SECRET,
         {
           algorithm: 'HS256',
@@ -61,7 +61,7 @@ router.post("/signin", async (req, res) =>{
           expiresIn: 86400, // 24 hours
         });
     res.status(200).send({
-        id: user.id,
+        id: user._id,
         username: user.username,
         email: user.email,
         accessToken: token
