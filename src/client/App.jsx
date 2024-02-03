@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 //import capsules from "./capsules";
-import {helloWorld} from "./capsules.js";
+import {HelloWorld, StartCookie, GetCookie} from "./capsules.js";
 
 function App() {
   const [count, setCount] = useState(0);
+
+  //cookies
+  StartCookie();
 
   return (
     <div className="App">
@@ -23,9 +26,14 @@ function App() {
           count is {count}
         </button>
 
-        <button onClick={helloWorld}>
+        <button onClick={HelloWorld}>
           hello
         </button>
+
+        <button onClick={GetCookie}>
+          GetCookie
+        </button>
+
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR!
         </p>
