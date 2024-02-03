@@ -2,15 +2,23 @@ import express from "express";
 import ViteExpress from "vite-express";
 import bodyParser from "body-parser"
 import dotenv from "dotenv";
+import cors from "cors"
+
 import test from "./routes/dbtest"
-import db from "./db.js"
 import capsule from "./routes/capsule"
+import signup from "./routes/signup.js"
 
+
+//keep these at the top
 dotenv.config();
-
-
-
 const app = express();
+
+var corsOptions = {
+  origin: "http://localhost:3000"
+};
+
+app.use(cors(corsOptions));
+
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -24,7 +32,10 @@ app.use("/test", test)
 
 app.use("/capsules", capsule);
 
+app.use("/signup", signup);
+
 app.get("/hello", (req, res) => {
+  res.send("Hello World!");
   /*
   const db = database();
   const testMessage = db.testMessage();
