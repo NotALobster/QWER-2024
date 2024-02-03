@@ -7,6 +7,7 @@
     "dev": "nodemon src/server/main.js -w src/server",
     "remote": "node src/server/main.js",
     "start": "NODE_ENV=production node src/server/main.js",
+    "test" : "vite build && node src/server/main.js",
     "build": "vite build"
   },
   "dependencies": {

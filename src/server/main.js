@@ -56,6 +56,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-ViteExpress.listen(app, 3000, () =>
+ViteExpress.listen(app, process.env.PORT, () =>
   console.log("Server is listening on port 3000..."),
 );
