@@ -2,7 +2,10 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs/dist/bcrypt.js';
 import express from 'express';
 import db from "../db.js";
+import dotenv from "dotenv";
+dotenv.config();
 
+const SECRET = process.env.AUTH_SECRET;
 
 const router = express.Router();
 
@@ -28,27 +31,39 @@ export default router;
 
 router.post("/signin", async (req, res) =>{
     let collection = db.collection("users");
-    let result = await collection.findOne({username : req.body.username});
-    if(!result){
-        console.log("test");
-        res.status(401).send("invalid user or password");
-        return;
+    let user = await collection.findOne({username : req.body.username});
+    if(!user){
+        return res.status(401).send({
+            accessToken: null,
+            message: "invalid username or password."
+          });
     }
 
     var passwordIsValid = bcrypt.compareSync(
         req.body.password,
-        result.password
+        user.password
       );
 
       if (!passwordIsValid) {
         return res.status(401).send({
           accessToken: null,
-          message: "Invalid Password!"
+          message: "invalid username or password."
         });
       }
-      else{
-        return res.status(200).send("nice password");
-      }
+      console.log(user.id);
+      const token = jwt.sign({id: user.id },
+        SECRET,
+        {
+          algorithm: 'HS256',
+          allowInsecureKeySizes: true,
+          expiresIn: 86400, // 24 hours
+        });
+    res.status(200).send({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        accessToken: token
+    });
 
 });
     /*
