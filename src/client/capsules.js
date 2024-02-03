@@ -27,6 +27,8 @@ export function GetCookie(){
     console.log(cookies.get('login'));
 }
 
+
+
 export function HelloWorld(){
     axios.get("http://localhost:3000/hello")
     .then(response => {

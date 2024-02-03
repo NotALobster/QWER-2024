@@ -4,8 +4,8 @@ import bodyParser from "body-parser"
 import dotenv from "dotenv";
 import cors from "cors"
 
-import test from "./routes/dbtest"
-import capsule from "./routes/capsule"
+import test from "./routes/dbtest.js"
+import capsule from "./routes/capsule.js"
 import users from "./routes/users.js"
 
 //keep these at the top
