@@ -1,19 +1,24 @@
 import express from "express";
 import ViteExpress from "vite-express";
 import dotenv from "dotenv";
+import test from "./routes/dbtest"
+import db from "./db.js"
 
 dotenv.config();
+
 
 
 const app = express();
-
-dotenv.config();
+//routes
+app.use("/test", test)
 
 app.get("/hello", (req, res) => {
-  res.send("Hello Vite + React!");
+  /*
+  const db = database();
+  const testMessage = db.testMessage();
+  res.send(testMessage);*/
 });
 
 ViteExpress.listen(app, 3000, () =>
   console.log("Server is listening on port 3000..."),
-  console.log(process.env.ATLAS_URI)
 );
