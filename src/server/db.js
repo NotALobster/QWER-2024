@@ -13,7 +13,7 @@ try {
   console.error(e);
 }
 
-let db = conn.db("sample_training");
+let db = conn.db("daily_dose");
 
 export default db;
 

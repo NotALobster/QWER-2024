@@ -1,0 +1,28 @@
+
+import express from "express"
+import db from "../db.js"
+
+const router = express.Router();
+
+router.get("/", async (req, res) => {
+  let collection = await db.collection("capsules");
+  let results = await collection.find({})
+    .limit(50)
+    .toArray();
+  res.send(results).status(200);
+});
+
+
+router.get("/user", async (req, res) => {
+    let collection = await db.collection("capsules");
+    let query = {user_id : Number(req.query.user_id)}
+    //console.log(req.params.user_id);
+    console.log(query);
+    let results = await collection.find(query)
+    .toArray();
+    if(!results) res.send(null).status(404);
+    else res.send(results).status(200);
+  });
+
+
+export default router;

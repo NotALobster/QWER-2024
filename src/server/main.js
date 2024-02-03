@@ -3,7 +3,7 @@ import ViteExpress from "vite-express";
 import dotenv from "dotenv";
 import test from "./routes/dbtest"
 import db from "./db.js"
-
+import capsule from "./routes/capsule"
 dotenv.config();
 
 
@@ -11,6 +11,8 @@ dotenv.config();
 const app = express();
 //routes
 app.use("/test", test)
+
+app.use("/capsules", capsule);
 
 app.get("/hello", (req, res) => {
   /*
