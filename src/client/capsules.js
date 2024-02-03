@@ -63,6 +63,17 @@ export function HelloWorldBasic(){
     console.log("Hello World, Basic Edition");
 }
 
+export function GetCapsules(){
+    const cookies = new Cookies(null, { path: '/' });
+    axios.get(URL + "capsules/user", {headers: cookies.get("userToken")})
+    .then(response => {
+        console.log(response);
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
 //export default capsules
 /*
 

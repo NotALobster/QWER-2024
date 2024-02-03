@@ -12,14 +12,14 @@ import users from "./routes/users.js"
 dotenv.config();
 const app = express();
 
-/*
+
 var corsOptions = {
-  origin: "http://localhost:3000"
+  origin: true// "http://localhost:3000", "https://qwer-2024.onrender.com/"
 };
-*/
+
 //app.use(cors(corsOptions));
 
-
+app.use(cors());
 
 //ViteExpress.config({ mode: "production" })
 
@@ -47,10 +47,13 @@ app.get("/hello", (req, res) => {
 });
 
 app.use(function(req, res, next) {
-  res.header(
-    "Access-Control-Allow-Headers",
+  /*
+    res.header(
+    "Access-Control-Allow-Headers: *",
+    "Access-Control-Allow-Origin: *",
     "Authorization, Origin, Content-Type, Accept"
   );
+  */
   next();
 });
 

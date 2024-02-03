@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 //import capsules from "./capsules";
-import {HelloWorld, StartCookie, GetCookie, Signin, Signup} from "./capsules.js";
+import {HelloWorld, StartCookie, GetCookie, Signin, Signup, GetCapsules} from "./capsules.js";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -42,6 +42,9 @@ function App() {
           TrySignup
         </button>
 
+        <button onClick={(event) => GetCapsules()}>
+          GetCapsules
+        </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR!
         </p>
