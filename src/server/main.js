@@ -1,14 +1,24 @@
 import express from "express";
 import ViteExpress from "vite-express";
+import bodyParser from "body-parser"
 import dotenv from "dotenv";
 import test from "./routes/dbtest"
 import db from "./db.js"
 import capsule from "./routes/capsule"
+
 dotenv.config();
 
 
 
 const app = express();
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+
 //routes
 app.use("/test", test)
 
