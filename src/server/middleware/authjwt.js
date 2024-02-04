@@ -5,12 +5,9 @@ dotenv.config();
 const SECRET = process.env.AUTH_SECRET;
 
 let verifyToken = (req, res, next) => {
-  console.log(req.headers);
-  console.log(req.Authorization);
-  let token = req.headers["authorization"];
 
   if (!token) {
-    token = req.headers["Authorization"];
+    token = req.headers["auth_temp"];
     if(!token){
       return res.status(403).send({ message: "No token provided" });
     }

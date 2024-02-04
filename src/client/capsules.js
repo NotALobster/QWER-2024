@@ -65,7 +65,7 @@ export function HelloWorldBasic(){
 
 export function GetCapsules(){
     const cookies = new Cookies(null, { path: '/' });
-    axios.get(URL + "capsules/user", {headers: {'Authorization' : cookies.get("userToken")}})
+    axios.get(URL + "capsules/user", {headers: {'auth_temp' : cookies.get("userToken")}})
     .then(response => {
         console.log(response.data);
     })
@@ -77,7 +77,7 @@ export function GetCapsules(){
 //TODO: date selection?
 export function AddCapsule(message){
     const cookies = new Cookies(null, { path: '/' });
-    axios.post(URL + "capsules/user", {data: {'message' : message}, headers: {'Authorization' : cookies.get("userToken")}})
+    axios.post(URL + "capsules/user", {data: {'message' : message}, headers: {'auth_temp' : cookies.get("userToken")}})
     .then(response => {
         console.log(response.data);
     })
