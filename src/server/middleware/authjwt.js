@@ -5,6 +5,7 @@ dotenv.config();
 const SECRET = process.env.AUTH_SECRET;
 
 let verifyToken = (req, res, next) => {
+  console.log(req.headers);
   let token = req.headers["authorization"];
 
   if (!token) {
