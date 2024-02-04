@@ -6,6 +6,7 @@ const SECRET = process.env.AUTH_SECRET;
 
 let verifyToken = (req, res, next) => {
   console.log(req.headers);
+  console.log(req.Authorization);
   let token = req.headers["authorization"];
 
   if (!token) {
