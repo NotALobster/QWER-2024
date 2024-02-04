@@ -27,7 +27,10 @@ var corsOptions={
 }
 app.use(cors(corsOptions));
 */
-app.use(cors());
+var corsOptions={
+  exposedHeaders : 'auth_temp'
+}
+app.use(cors(corsOptions));
 
 //ViteExpress.config({ mode: "production" })
 
