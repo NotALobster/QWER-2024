@@ -5,7 +5,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 
 
-const URL = "http://localhost:3000/";//'https://qwer-2024.onrender.com/' "http://localhost:3000/";
+const URL = "https://qwer-2024.onrender.com/";//"http://localhost:3000/";//'https://qwer-2024.onrender.com/' "http://localhost:3000/";
 /*
 export default class capsules extends Component{
     
