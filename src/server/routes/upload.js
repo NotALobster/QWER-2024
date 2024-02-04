@@ -15,16 +15,8 @@ cloudinary.config({
     api_secret:process.env.CLOUDINARY_SECRET
 });
 
+
 /*
-const storage = new CloudinaryStorage({
-    cloudinary,
-    params: {
-        folder: 'DailyDose',
-        allowedFormats: ['jpeg', 'png', 'jpg'],
-    }
-});*/
-
-
 const storage = multer.diskStorage({
     destination: '/uploads',
     filename: function(req, file, cb) {
@@ -36,34 +28,12 @@ const storage = multer.diskStorage({
 
 //const upload = multer({storage});
 const upload = multer({ storage: storage, limits: { fileSize: 10 * 1024 * 1024 } });
-
-const router = express.Router();
-
-/*
-router.post("/", upload.single('image'), async (req, res) => {
-    console.log(req.file);
-    if(req.file){
-      res.status(200).send(req.file);
-    }
-    else{
-      res.status(401).send("idk what happened");
-    }
-  });
 */
-
-router.post('/', upload.single('image'), async (req, res) => {
-  // Use multer to handle file uploads
+const router = express.Router();
+router.post('/', async (req, res) => {res.status(200).send("read only moment");});
   /*
-     upload.fields([
-       { name: 'image', maxCount: 1 }
-     ])(req, res, async (err) => {
-         if (err) {
-           return res.status(400).json({ error: err.message });
-          }
-        })
-    // Retrieve uploaded files from request object
-    console.log(req.body);
-    */
+router.post('/', upload.single('image'), async (req, res) => {
+
     const image = req.file;
     console.log(req.file);
     try{
@@ -77,6 +47,6 @@ router.post('/', upload.single('image'), async (req, res) => {
     finally {
       //fs.unlinkSync(image);
     }
-  })
+  })*/
   
 export default router;
