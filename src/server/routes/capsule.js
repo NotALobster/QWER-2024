@@ -49,7 +49,7 @@ router.post("/user", authJwt.verifyToken, async(req, res) =>{
     let newDoc = req.body;
     newDoc.date_added = new Date();
     */
-   //console.log(req.body);
+   console.log(req.body);
     let newDoc = {
       message : req.body.message,
       date_added : new Date(),
