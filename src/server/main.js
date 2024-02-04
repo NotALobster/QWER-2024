@@ -7,6 +7,7 @@ import cors from "cors"
 import test from "./routes/dbtest.js"
 import capsule from "./routes/capsule.js"
 import users from "./routes/users.js"
+import upload from "./routes/upload.js"
 
 //keep these at the top
 dotenv.config();
@@ -37,6 +38,8 @@ app.use("/test", test)
 app.use("/capsules", capsule);
 
 app.use("/users", users);
+
+app.use("/upload", upload);
 
 app.get("/hello", (req, res) => {
   res.send("Hello World!");

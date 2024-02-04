@@ -52,6 +52,14 @@ function App() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR!
         </p>
+        <form action="/upload" method="POST" encType="multipart/form-data">
+                <div class="mb-3">
+                    <div class="form-file custom-file">
+                        <input class="form-control" type="file" id="formFile" name="image" multiple></input>
+                    </div>
+               </div>
+               <button type="submit" class="btn btn-success">Upload</button>
+              </form>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
