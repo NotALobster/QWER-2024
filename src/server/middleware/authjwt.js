@@ -9,7 +9,7 @@ let verifyToken = (req, res, next) => {
   //console.log(req.headers);
   let token = req.headers.auth_temp;
   if (!token) {
-    token = req.body.auth;
+    token = req.body.headers.auth_temp; //I am going to cry
     if(!token){
       return res.status(403).send({ message: "No token provided" });
     }
