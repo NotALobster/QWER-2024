@@ -8,7 +8,10 @@ let verifyToken = (req, res, next) => {
   let token = req.headers["authorization"];
 
   if (!token) {
-    return res.status(403).send({ message: "No token provided" });
+    token = req.headers["Authorization"];
+    if(!token){
+      return res.status(403).send({ message: "No token provided" });
+    }
   }
 
   jsonwebtoken.verify(token,
