@@ -20,7 +20,11 @@ var corsOptions = {
   Headers: "*",
 };
 */
-//app.use(cors(corsOptions));
+
+var corsOptions={
+  allowedHeaders : ['Authorization']
+}
+app.use(cors(corsOptions));
 
 //app.use(cors());
 
@@ -52,11 +56,12 @@ app.get("/hello", (req, res) => {
 });
 
 app.use(function(req, res, next) {
+  /*
     res.header(
     "Access-Control-Allow-Headers: *",
     "Access-Control-Allow-Origin: *",
-    "Access-Control-Allow-Methods: *"
-  );
+    "Authorization, Origin, Content-Type, Accept"
+  );*/
   next();
 });
 
