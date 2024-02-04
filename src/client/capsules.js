@@ -42,8 +42,8 @@ export function Signin(username, password){
 
 export function Signup(username, password){
     axios.post(URL + "users/signup", {
-        username,
-        password
+        'username' : username,
+        'password' : password
     }) 
     .catch(err => {
         console.log("if this is 400 then username is already in use")
@@ -65,9 +65,21 @@ export function HelloWorldBasic(){
 
 export function GetCapsules(){
     const cookies = new Cookies(null, { path: '/' });
-    axios.get(URL + "capsules/user", {headers: cookies.get("userToken")})
+    axios.get(URL + "capsules/user", {headers: {'Authorization' : cookies.get("userToken")}})
     .then(response => {
-        console.log(response);
+        console.log(response.data);
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+//TODO: date selection?
+export function AddCapsule(message){
+    const cookies = new Cookies(null, { path: '/' });
+    axios.post(URL + "capsules/user", {data: {'message' : message}, headers: {'Authorization' : cookies.get("userToken")}})
+    .then(response => {
+        console.log(response.data);
     })
     .catch(err => {
         console.log(err);
