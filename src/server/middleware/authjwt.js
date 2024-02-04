@@ -5,11 +5,14 @@ dotenv.config();
 const SECRET = process.env.AUTH_SECRET;
 
 let verifyToken = (req, res, next) => {
-
-  console.log(req.headers);
-  const token = req.headers.auth_temp;
+  console.log(req.body);
+  //console.log(req.headers);
+  let token = req.headers.auth_temp;
   if (!token) {
-    return res.status(403).send({ message: "No token provided" });
+    token = req.body.auth;
+    if(!token){
+      return res.status(403).send({ message: "No token provided" });
+    }
   }
 
   jsonwebtoken.verify(token,
