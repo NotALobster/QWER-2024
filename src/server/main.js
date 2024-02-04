@@ -14,13 +14,15 @@ dotenv.config();
 const app = express();
 
 
+/*
 var corsOptions = {
-  origin: true// "http://localhost:3000", "https://qwer-2024.onrender.com/"
+  origin: true, // "http://localhost:3000", "https://qwer-2024.onrender.com/"
+  Headers: "*",
 };
-
+*/
 //app.use(cors(corsOptions));
 
-app.use(cors());
+//app.use(cors());
 
 //ViteExpress.config({ mode: "production" })
 
@@ -53,7 +55,7 @@ app.use(function(req, res, next) {
     res.header(
     "Access-Control-Allow-Headers: *",
     "Access-Control-Allow-Origin: *",
-    "Authorization, Origin, Content-Type, Accept"
+    "Access-Control-Allow-Methods: *"
   );
   next();
 });
