@@ -21,12 +21,13 @@ var corsOptions = {
 };
 */
 
+/*
 var corsOptions={
   allowedHeaders : ['Authorization']
 }
 app.use(cors(corsOptions));
-
-//app.use(cors());
+*/
+app.use(cors());
 
 //ViteExpress.config({ mode: "production" })
 
