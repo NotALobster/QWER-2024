@@ -5,7 +5,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 
 
-const URL = "https://qwer-2024.onrender.com/";//"http://localhost:3000/";//'https://qwer-2024.onrender.com/' "http://localhost:3000/";
+const URL = "https://qwer-2024.onrender.com/"; //"http://localhost:3000/";//'https://qwer-2024.onrender.com/' "http://localhost:3000/";
 /*
 export default class capsules extends Component{
     
@@ -77,7 +77,7 @@ export function GetCapsules(){
 //TODO: date selection?
 export function AddCapsule(message){
     const cookies = new Cookies(null, { path: '/' });
-    axios.post(URL + "capsules/user", {data: {'message' : message}, headers: {'auth_temp' : cookies.get("userToken")}})
+    axios.post(URL + "capsules/user", {data: {'message' : message}, headers: {'auth_temp' : cookies.get("userToken"), withCredentials: true}})
     .then(response => {
         console.log(response.data);
     })
