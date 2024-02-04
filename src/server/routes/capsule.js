@@ -53,6 +53,7 @@ router.post("/user", authJwt.verifyToken, async(req, res) =>{
     let newDoc = {
       message : req.body.message,
       date_added : new Date(),
+      date_can_open : new Date(new Date().getTime() + 5 * 60000), //5 min for now
       user_id : req.id,
     }
     let result = await collection.insertOne(newDoc);
