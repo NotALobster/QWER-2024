@@ -50,13 +50,11 @@ app.get("/hello", (req, res) => {
 });
 
 app.use(function(req, res, next) {
-  /*
     res.header(
     "Access-Control-Allow-Headers: *",
     "Access-Control-Allow-Origin: *",
     "Authorization, Origin, Content-Type, Accept"
   );
-  */
   next();
 });
 
