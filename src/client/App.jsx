@@ -2,13 +2,24 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 //import capsules from "./capsules";
-import {HelloWorld, StartCookie, GetCookie, Signin, Signup, GetCapsules, AddCapsule} from "./capsules.js";
+import {HelloWorld, StartCookie, GetCookie, Signin, Signup, GetCapsules, AddCapsule, UploadImage} from "./capsules.js";
 
 function App() {
   const [count, setCount] = useState(0);
 
+  const [file, setFile] = useState();
   //cookies
   StartCookie();
+
+
+  const submit = async event => {
+    event.preventDefault();
+    let formData = new FormData();
+    formData.append("image", file);
+    //formData.append("description", description)
+    console.log(formData);  
+    UploadImage(formData);
+  }
 
   return (
     <div className="App">
@@ -52,14 +63,17 @@ function App() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR!
         </p>
-        <form action="/upload" method="POST" encType="multipart/form-data">
-                <div class="mb-3">
-                    <div class="form-file custom-file">
-                        <input class="form-control" type="file" id="formFile" name="image" multiple></input>
-                    </div>
-               </div>
-               <button type="submit" class="btn btn-success">Upload</button>
-              </form>
+        <div>
+          <form onSubmit={submit}>
+            <input
+              filename={file} 
+              onChange={e => setFile(e.target.files[0])} 
+              type="file" 
+              accept="image/*"
+            ></input>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
